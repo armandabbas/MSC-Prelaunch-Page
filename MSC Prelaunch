@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matcha Supply Co. | The Supply is Coming.</title>
+    <meta name="description" content="Premium matcha. Discreet delivery. Join the waitlist for the first drop.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js (For logic without build steps) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        matcha: {
+                            deep: '#2D5016',    
+                            vibrant: '#7FB069',
+                            light: '#C5E1A5',
+                        },
+                        base: {
+                            cream: '#F5F3EF',   
+                            offWhite: '#FAFAF8',
+                            charcoal: '#1A1A1A',
+                            warmGray: '#6B6B6B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Space Grotesk', 'Helvetica Neue', 'sans-serif'], 
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Polish */
+        body {
+            background-color: #F5F3EF;
+            color: #1A1A1A;
+        }
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            z-index: 99;
+        }
+    </style>
+</head>
+<body class="antialiased" x-data="waitlistApp()">
+
+    <div class="noise"></div>
+
+    <!-- Main Container -->
+    <main class="min-h-screen flex flex-col justify-between relative overflow-hidden">
+
+        <!-- Background Gradients -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-matcha-light/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-matcha-deep/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <!-- Header (Logo) -->
+        <header class="w-full py-8 text-center relative z-10 animate-[fadeIn_0.8s_ease-out]">
+            <div class="inline-block relative group cursor-default">
+                <span class="font-heading font-bold tracking-[0.2em] text-sm md:text-base uppercase text-base-charcoal">
+                    Matcha Supply Co.
+                </span>
+                <div class="w-full h-px bg-matcha-deep scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left mt-1"></div>
+            </div>
+        </header>
+
+        <!-- Section 1: Hero & Interaction -->
+        <section class="flex-1 flex flex-col items-center justify-center px-6 py-8 relative z-10 w-full max-w-4xl mx-auto">
+            
+            <!-- VISUAL: Floating Tube (CSS Art to ensure it looks good without images) -->
+            <!-- VISUAL: Dein echtes Bild -->
+            <div class="mb-10 animate-float relative z-20">
+                <!-- Container für Größe -->
+                <div class="relative w-48 h-auto md:w-64">
+                    
+                    <!-- 1. Schatten am Boden (behalte diesen, damit es schwebt) -->
+                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
+                    
+                    <!-- 2. Dein Bild -->
+                    <!-- Ersetze 'DEIN_LINK.png' mit deinem Bildpfad -->
+                    <img 
+                        src="Pill.png" 
+                        alt="Matcha Tube Premium Supply" 
+                        class="w-full h-auto object-contain drop-shadow-2xl relative z-10"
+                    >
+                </div>
+            </div>
+
+            <!-- CONTENT SWAP: Waitlist Form VS Referral Card -->
+            <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">
+                
+                <!-- STATE: Pre-Signup -->
+                <template x-if="!joined">
+                    <div class="flex flex-col items-center animate-fade-in">
+                        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-base-charcoal mb-4 leading-[0.9]">
+                            THE SUPPLY <br><span class="text-matcha-deep">IS COMING.</span>
+                        </h1>
+                        <p class="font-sans text-base-warmGray text-base md:text-lg mb-8 leading-relaxed max-w-xs md:max-w-sm mx-auto">
+                            Premium Ceremonial Matcha.<br> Discreet Delivery. No Middlemen.<br>
+                            <span class="text-sm mt-2 block text-matcha-deep/80 italic">Sign up for the drop.</span>
+                        </p>
+
+                        <form @submit.prevent="submitForm" class="w-full relative">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input 
+                                    type="email" 
+                                    required 
+                                    placeholder="enter@email.com" 
+                                    x-model="email"
+                                    class="flex-1 h-12 bg-white border border-base-charcoal/10 px-4 rounded-sm text-base-charcoal placeholder:text-base-warmGray/50 focus:outline-none focus:border-matcha-deep focus:ring-1 focus:ring-matcha-deep transition-all font-sans text-sm"
+                                >
+                                <button 
+                                    type="submit" 
+                                    :disabled="loading"
+                                    class="h-12 px-8 bg-matcha-deep text-white font-heading font-bold tracking-widest text-xs uppercase rounded-sm hover:bg-[#234010] transition-all disabled:opacity-70 flex items-center justify-center min-w-[120px]"
+                                >
+                                    <span x-show="!loading">Join List</span>
+                                    <i x-show="loading" class="ph-bold ph-spinner animate-spin text-lg"></i>
+                                </button>
+                            </div>
+                            <!-- Waitlist Counter -->
+                            <div class="mt-4 flex items-center justify-center gap-2 text-xs text-base-warmGray/80 font-medium">
+                                <span class="w-1.5 h-1.5 bg-matcha-vibrant rounded-full animate-pulse"></span>
+                                <span x-text="counter.toLocaleString() + ' people waiting'"></span>
+                            </div>
+                        </form>
+                    </div>
+                </template>
+
+                <!-- STATE: Post-Signup (Referral) -->
+                <template x-if="joined">
+                    <div class="bg-white p-6 md:p-8 rounded-sm border border-base-charcoal/5 shadow-xl animate-[fadeIn_0.5s_ease-out]">
+                        <div class="flex items-center justify-center gap-2 text-matcha-deep mb-2">
+                            <i class="ph-fill ph-check-circle text-xl"></i>
+                            <span class="font-bold text-xs uppercase tracking-widest">You're on the list</span>
+                        </div>
+                        
+                        <div class="text-3xl md:text-4xl font-heading font-bold text-base-charcoal mb-6">
+                            Position #<span x-text="position.toLocaleString()"></span>
+                        </div>
+
+                        <div class="bg-base-cream p-4 rounded-sm border border-base-charcoal/5 mb-6 text-left">
+                            <p class="text-xs font-bold uppercase tracking-widest text-base-charcoal mb-2">Your Supply Link</p>
+                            <p class="text-xs text-base-warmGray mb-3">Share to cut the line & earn rewards.</p>
+                            
+                            <div class="flex gap-2">
+                                <div class="flex-1 bg-white border border-gray-200 h-10 flex items-center px-3 text-xs font-mono text-base-warmGray overflow-hidden whitespace-nowrap select-all">
+                                    matchasupply.co/r/k9X2p
+                                </div>
+                                <button @click="copyLink" class="h-10 px-4 bg-base-charcoal text-white text-xs font-bold uppercase tracking-widest hover:bg-matcha-deep transition-colors">
+                                    <span x-text="copied ? 'Copied' : 'Copy'"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Rewards Progress -->
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-base-warmGray">
+                                <span>0 Referrals</span>
+                                <span class="text-matcha-deep">Next: Early Access (3)</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-matcha-deep w-[5%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 grid grid-cols-3 gap-2">
+                            <button class="py-2 bg-[#1DA1F2]/10 text-[#1DA1F2] text-xl rounded-sm hover:bg-[#1DA1F2]/20 transition"><i class="ph-fill ph-twitter-logo"></i></button>
+                            <button class="py-2 bg-[#25D366]/10 text-[#25D366] text-xl rounded-sm hover:bg-[#25D366]/20 transition"><i class="ph-fill ph-whatsapp-logo"></i></button>
+                            <button class="py-2 bg-gray-100 text-gray-600 text-xl rounded-sm hover:bg-gray-200 transition"><i class="ph-fill ph-envelope-simple"></i></button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- Section 2: Value Props (Divider) -->
+        <section class="w-full border-y border-base-charcoal/5 bg-white/50 backdrop-blur-sm mt-12">
+            <div class="max-w-5xl mx-auto px-6 py-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    
+                    <!-- Item 1 -->
+                    <div class="flex flex-col items-center group">
+                        <div class="mb-3 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
+                            <i class="ph ph-flask text-3xl"></i>
+                        </div>
+                        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-1">Lab Tested</h3>
+                        <p class="text-xs text-base-warmGray">Pure potency. Zero fillers.</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="flex flex-col items-center group">
+                        <div class="mb-3 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
+                            <i class="ph ph-map-pin-line text-3xl"></i>
+                        </div>
+                        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-1">Single Origin</h3>
+                        <p class="text-xs text-base-warmGray">Sourced from Uji, Japan.</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="flex flex-col items-center group">
+                        <div class="mb-3 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
+                            <i class="ph ph-handshake text-3xl"></i>
+                        </div>
+                        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-1">No Middlemen</h3>
+                        <p class="text-xs text-base-warmGray">Direct from source to supply.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Teaser / Video Placeholder -->
+        <section class="py-12 text-center bg-[#F0EFEA]">
+             <p class="font-sans italic text-base-warmGray text-sm md:text-base mb-2">
+                "The most potent matcha we've ever curated."
+            </p>
+             <p class="font-heading text-xs font-bold uppercase tracking-widest text-base-charcoal/40">
+                Limited Release • Late 2025
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-base-charcoal text-base-cream py-10 px-6">
+            <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex gap-6 text-2xl text-white/60">
+                    <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-x-logo"></i></a>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-xs font-mono text-base-warmGray mb-1">© 2025 Matcha Supply Co.</p>
+                    <div class="flex gap-4 text-[10px] text-base-warmGray/70 uppercase tracking-wide justify-center md:justify-end">
+                        <a href="#" class="hover:text-white">Privacy</a>
+                        <span>•</span>
+                        <a href="#" class="hover:text-white">Terms</a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- LOGIC -->
+    <script>
+        function waitlistApp() {
+            return {
+                joined: false,
+                email: '',
+                loading: false,
+                counter: 2847,
+                position: 2848,
+                copied: false,
+
+                init() {
+                    // Fake Counter Logic: Increment slightly over time
+                    setInterval(() => {
+                        if(Math.random() > 0.7) { // 30% chance every check
+                            this.counter++;
+                        }
+                    }, 2000);
+                },
+
+                submitForm() {
+                    if (!this.email) return;
+                    
+                    this.loading = true;
+                    
+                    // Simulate API Delay
+                    setTimeout(() => {
+                        this.loading = false;
+                        this.joined = true;
+                        // Update position based on fake logic
+                        this.position = this.counter + 1;
+                        
+                        // Scroll smooth to card if needed (UX polish)
+                        // this.$refs.mainContent.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        
+                        // Fire confetti/tracker here
+                        console.log("Waitlist joined: " + this.email);
+                    }, 1500);
+                },
+
+                copyLink() {
+                    navigator.clipboard.writeText("matchasupply.co/r/k9X2p");
+                    this.copied = true;
+                    setTimeout(() => this.copied = false, 2000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

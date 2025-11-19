@@ -97,36 +97,33 @@
     <!-- Hero Main Section -->
     <main class="flex-1 flex flex-col items-center justify-center px-6 pt-4 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-        <!-- VISUAL OPTION 2: THE SEALED CARD -->
-        <!-- Diese Konstruktion lässt das Bild physisch verdeckt erscheinen (wie in einem Archiv) -->
+        <!-- VISUAL: THE SEALED CARD (HIDDEN PRODUCT) -->
         <div class="mb-16 mt-4 animate-float relative">
             
-            <!-- Container für die Komposition -->
+            <!-- Container -->
             <div class="relative w-56 h-64 mx-auto flex flex-col items-center justify-end">
                 
-                <!-- 1. Das Bild (Im Hintergrund, Z-Index 0) -->
-                <!-- Wir schieben es etwas hoch (mb-8), damit der Kopf oben rausschaut -->
-                <div class="relative z-0 w-32 md:w-40 mb-8">
+                <!-- 1. Das Bild (HINTERGRUND) -->
+                <!-- translate-y-12 schiebt es nach unten, damit nur der Deckel rausschaut -->
+                <div class="relative z-0 w-32 md:w-40 translate-y-12">
                      <img src="Pill.png" alt="Confidential Supply" class="w-full h-auto object-contain filter brightness-[0.95]">
                 </div>
 
-                <!-- 2. Die "Classified" Karte (Im Vordergrund, Z-Index 10) -->
+                <!-- 2. Die Karte (VORDERGRUND) -->
                 <div class="absolute bottom-0 z-10 w-64 h-40 bg-white border border-base-charcoal/10 shadow-2xl rounded-sm flex flex-col items-center justify-center text-center">
                     
                     <!-- Grüner Akzent-Balken oben -->
                     <div class="absolute top-0 left-0 w-full h-1 bg-matcha-deep"></div>
 
-                    <!-- Subtiles Tech-Gitter im Hintergrund -->
+                    <!-- Tech-Gitter im Hintergrund -->
                     <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 8px 8px;"></div>
                     
                     <!-- Inhalt der Karte -->
                     <div class="relative z-20 px-6">
-                        <!-- Lock Icon Circle -->
                         <div class="w-9 h-9 mx-auto mb-3 text-base-charcoal/70 bg-base-cream border border-base-charcoal/10 rounded-full flex items-center justify-center">
                             <i class="ph-bold ph-lock-key text-lg"></i>
                         </div>
                         
-                        <!-- Text -->
                         <h3 class="font-heading text-xl font-bold text-base-charcoal uppercase tracking-widest mb-1">
                             Classified
                         </h3>
@@ -138,16 +135,15 @@
                 </div>
             </div>
             
-            <!-- 3. Bodenschatten (Ganz unten, Z-Index -10) -->
+            <!-- Bodenschatten -->
             <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-56 h-5 bg-black/10 blur-xl rounded-full -z-10"></div>
             
         </div>
 
-
-        <!-- Content Area: Form -> Referral -->
+        <!-- Content Area -->
         <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">
             
-            <!-- VOR der Anmeldung -->
+            <!-- PRE-SIGNUP -->
             <template x-if="!joined">
                 <div class="flex flex-col items-center animate-fade-in">
                     <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-base-charcoal mb-4 leading-[0.9]">
@@ -176,7 +172,6 @@
                                 <i x-show="loading" class="ph-bold ph-spinner animate-spin text-lg"></i>
                             </button>
                         </div>
-                        <!-- Counter -->
                         <div class="mt-4 flex items-center justify-center gap-2 text-xs text-base-warmGray/80 font-medium">
                             <span class="w-1.5 h-1.5 bg-matcha-vibrant rounded-full animate-pulse"></span>
                             <span x-text="counter.toLocaleString() + ' people waiting'"></span>
@@ -185,7 +180,7 @@
                 </div>
             </template>
 
-            <!-- NACH der Anmeldung -->
+            <!-- POST-SIGNUP -->
             <template x-if="joined">
                 <div class="bg-white p-6 md:p-8 rounded-sm border border-base-charcoal/5 shadow-xl animate-[fadeIn_0.5s_ease-out]">
                     <div class="flex items-center justify-center gap-2 text-matcha-deep mb-2">
@@ -260,7 +255,7 @@
         </div>
     </section>
 
-    <!-- Light Footer + Disclaimer -->
+    <!-- Light Footer with Disclaimer -->
     <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm py-10 px-6 mt-auto">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             
@@ -271,7 +266,7 @@
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-x-logo"></i></a>
             </div>
 
-            <!-- Copy -->
+            <!-- Copyright -->
             <div class="text-center md:text-right">
                 <p class="text-xs font-mono text-base-charcoal mb-1">© 2025 Matcha Supply Co.</p>
                 <div class="flex gap-4 text-[10px] text-base-warmGray/80 uppercase tracking-wide justify-center md:justify-end">
@@ -282,7 +277,7 @@
             </div>
         </div>
 
-        <!-- Disclaimer Block -->
+        <!-- Disclaimer -->
         <div class="max-w-4xl mx-auto pt-6 border-t border-base-charcoal/10 text-center">
             <p class="text-[10px] leading-relaxed text-base-warmGray/70">
                 <span class="font-bold text-base-charcoal/90 uppercase">Legal Disclaimer:</span>
@@ -293,7 +288,7 @@
         </div>
     </footer>
 
-    <!-- Logic Script -->
+    <!-- Script -->
     <script>
         function waitlistApp() {
             return {

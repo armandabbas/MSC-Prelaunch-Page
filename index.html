@@ -6,10 +6,10 @@
     <title>Matcha Supply Co. | The Supply is Coming.</title>
     <meta name="description" content="Premium matcha. Discreet delivery. Join the waitlist for the first drop.">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (Lädt Design-Framework direkt) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Alpine.js (For logic without build steps) -->
+    <!-- Alpine.js (Für die Logik wie Counter und Formular) -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- Phosphor Icons -->
@@ -67,6 +67,7 @@
             background-color: #F5F3EF;
             color: #1A1A1A;
         }
+        /* Rauschen-Effekt Overlay */
         .noise {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -83,7 +84,7 @@
     <!-- Main Container -->
     <main class="min-h-screen flex flex-col justify-between relative overflow-hidden">
 
-        <!-- Background Gradients -->
+        <!-- Background Gradients (Atmosphäre) -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
             <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-matcha-light/10 rounded-full blur-3xl"></div>
             <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-matcha-deep/5 rounded-full blur-3xl"></div>
@@ -102,21 +103,18 @@
         <!-- Section 1: Hero & Interaction -->
         <section class="flex-1 flex flex-col items-center justify-center px-6 py-8 relative z-10 w-full max-w-4xl mx-auto">
             
-            <!-- VISUAL: Floating Tube (CSS Art to ensure it looks good without images) -->
-            <!-- VISUAL: Dein echtes Bild -->
-            <div class="mb-10 animate-float relative z-20">
-                <!-- Container für Größe -->
+            <!-- VISUAL: Dein Bild "Pill.png" -->
+            <div class="mb-12 animate-float relative">
                 <div class="relative w-48 h-auto md:w-64">
-                    
-                    <!-- 1. Schatten am Boden (behalte diesen, damit es schwebt) -->
+                    <!-- Schatten am Boden (bleibt unten während das Bild schwebt) -->
                     <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
                     
-                    <!-- 2. Dein Bild -->
-                    <!-- Ersetze 'DEIN_LINK.png' mit deinem Bildpfad -->
+                    <!-- DEIN BILD -->
+                    <!-- Wichtig: Bild muss 'Pill.png' heißen und im selben Ordner sein -->
                     <img 
                         src="Pill.png" 
-                        alt="Matcha Tube Premium Supply" 
-                        class="w-full h-auto object-contain drop-shadow-2xl relative z-10"
+                        alt="Matcha Supply Pill Tube" 
+                        class="w-full h-auto object-contain drop-shadow-xl relative z-10"
                     >
                 </div>
             </div>
@@ -124,7 +122,7 @@
             <!-- CONTENT SWAP: Waitlist Form VS Referral Card -->
             <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">
                 
-                <!-- STATE: Pre-Signup -->
+                <!-- STATE: Vor der Anmeldung -->
                 <template x-if="!joined">
                     <div class="flex flex-col items-center animate-fade-in">
                         <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-base-charcoal mb-4 leading-[0.9]">
@@ -162,7 +160,7 @@
                     </div>
                 </template>
 
-                <!-- STATE: Post-Signup (Referral) -->
+                <!-- STATE: Nach der Anmeldung (Referral) -->
                 <template x-if="joined">
                     <div class="bg-white p-6 md:p-8 rounded-sm border border-base-charcoal/5 shadow-xl animate-[fadeIn_0.5s_ease-out]">
                         <div class="flex items-center justify-center gap-2 text-matcha-deep mb-2">
@@ -209,7 +207,7 @@
             </div>
         </section>
 
-        <!-- Section 2: Value Props (Divider) -->
+        <!-- Section 2: Value Props -->
         <section class="w-full border-y border-base-charcoal/5 bg-white/50 backdrop-blur-sm mt-12">
             <div class="max-w-5xl mx-auto px-6 py-10">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -245,41 +243,22 @@
             </div>
         </section>
 
-        <!-- Section 3: Teaser / Video Placeholder -->
-        <section class="py-12 text-center bg-[#F0EFEA]">
-             <p class="font-sans italic text-base-warmGray text-sm md:text-base mb-2">
-                "The most potent matcha we've ever curated."
-            </p>
-             <p class="font-heading text-xs font-bold uppercase tracking-widest text-base-charcoal/40">
-                Limited Release • Late 2025
-            </p>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-base-charcoal text-base-cream py-10 px-6">
+        <!-- Section 3: Footer -->
+        <footer class="bg-base-charcoal text-base-cream py-10 px-6 text-center md:text-left mt-auto">
             <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                
                 <div class="flex gap-6 text-2xl text-white/60">
                     <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
                     <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
-                    <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-x-logo"></i></a>
                 </div>
-
-                <div class="text-center md:text-right">
+                <div>
                     <p class="text-xs font-mono text-base-warmGray mb-1">© 2025 Matcha Supply Co.</p>
-                    <div class="flex gap-4 text-[10px] text-base-warmGray/70 uppercase tracking-wide justify-center md:justify-end">
-                        <a href="#" class="hover:text-white">Privacy</a>
-                        <span>•</span>
-                        <a href="#" class="hover:text-white">Terms</a>
-                    </div>
                 </div>
-
             </div>
         </footer>
 
     </main>
 
-    <!-- LOGIC -->
+    <!-- Logic -->
     <script>
         function waitlistApp() {
             return {
@@ -291,9 +270,9 @@
                 copied: false,
 
                 init() {
-                    // Fake Counter Logic: Increment slightly over time
+                    // Simuliert, dass andere Leute beitreten
                     setInterval(() => {
-                        if(Math.random() > 0.7) { // 30% chance every check
+                        if(Math.random() > 0.7) {
                             this.counter++;
                         }
                     }, 2000);
@@ -301,21 +280,13 @@
 
                 submitForm() {
                     if (!this.email) return;
-                    
                     this.loading = true;
                     
-                    // Simulate API Delay
+                    // Fake Ladezeit
                     setTimeout(() => {
                         this.loading = false;
                         this.joined = true;
-                        // Update position based on fake logic
                         this.position = this.counter + 1;
-                        
-                        // Scroll smooth to card if needed (UX polish)
-                        // this.$refs.mainContent.scrollIntoView({behavior: 'smooth', block: 'center'});
-                        
-                        // Fire confetti/tracker here
-                        console.log("Waitlist joined: " + this.email);
                     }, 1500);
                 },
 

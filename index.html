@@ -97,28 +97,29 @@
     <!-- Hero Main Section -->
     <main class="flex-1 flex flex-col items-center justify-center px-6 pt-4 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-        <!-- VISUAL: THE SEALED CARD (HIDDEN PRODUCT) -->
+        <!-- VISUAL: SEALED CARD -->
         <div class="mb-16 mt-4 animate-float relative">
             
             <!-- Container -->
             <div class="relative w-56 h-64 mx-auto flex flex-col items-center justify-end">
                 
-                <!-- 1. Das Bild (HINTERGRUND) -->
-                <!-- translate-y-12 schiebt es nach unten, damit nur der Deckel rausschaut -->
-                <div class="relative z-0 w-32 md:w-40 translate-y-12">
+                <!-- 1. Das Bild (Tube) -->
+                <!-- translate-y-12 (Mobile) -> md:translate-y-20 (Desktop): Schiebt die Röhre tief nach unten -->
+                <div class="relative z-0 w-32 md:w-40 translate-y-12 md:translate-y-20 transition-all duration-500">
                      <img src="Pill.png" alt="Confidential Supply" class="w-full h-auto object-contain filter brightness-[0.95]">
                 </div>
 
-                <!-- 2. Die Karte (VORDERGRUND) -->
-                <div class="absolute bottom-0 z-10 w-64 h-40 bg-white border border-base-charcoal/10 shadow-2xl rounded-sm flex flex-col items-center justify-center text-center">
+                <!-- 2. Die Karte (Vordergrund) -->
+                <!-- h-40 (Mobile) -> md:h-56 (Desktop): Macht die Karte deutlich höher auf Desktop, um das untere Ende zu verdecken -->
+                <div class="absolute bottom-0 z-10 w-64 md:w-72 h-40 md:h-56 bg-white border border-base-charcoal/10 shadow-2xl rounded-sm flex flex-col items-center justify-center text-center transition-all duration-500">
                     
-                    <!-- Grüner Akzent-Balken oben -->
+                    <!-- Grüner Akzent -->
                     <div class="absolute top-0 left-0 w-full h-1 bg-matcha-deep"></div>
 
-                    <!-- Tech-Gitter im Hintergrund -->
+                    <!-- Tech-Gitter -->
                     <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 8px 8px;"></div>
                     
-                    <!-- Inhalt der Karte -->
+                    <!-- Inhalt -->
                     <div class="relative z-20 px-6">
                         <div class="w-9 h-9 mx-auto mb-3 text-base-charcoal/70 bg-base-cream border border-base-charcoal/10 rounded-full flex items-center justify-center">
                             <i class="ph-bold ph-lock-key text-lg"></i>
@@ -255,18 +256,14 @@
         </div>
     </section>
 
-    <!-- Light Footer with Disclaimer -->
+    <!-- Footer with Disclaimer -->
     <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm py-10 px-6 mt-auto">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-            
-            <!-- Icons -->
             <div class="flex gap-6 text-2xl text-base-charcoal/60">
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-x-logo"></i></a>
             </div>
-
-            <!-- Copyright -->
             <div class="text-center md:text-right">
                 <p class="text-xs font-mono text-base-charcoal mb-1">© 2025 Matcha Supply Co.</p>
                 <div class="flex gap-4 text-[10px] text-base-warmGray/80 uppercase tracking-wide justify-center md:justify-end">
@@ -276,8 +273,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Disclaimer -->
         <div class="max-w-4xl mx-auto pt-6 border-t border-base-charcoal/10 text-center">
             <p class="text-[10px] leading-relaxed text-base-warmGray/70">
                 <span class="font-bold text-base-charcoal/90 uppercase">Legal Disclaimer:</span>

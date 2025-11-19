@@ -65,7 +65,6 @@
             background-color: #F5F3EF;
             color: #1A1A1A;
         }
-        /* Textur Overlay */
         .noise {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -95,10 +94,10 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Hero Section -->
     <main class="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-        <!-- BILD: Pill.png -->
+        <!-- BILD -->
         <div class="mb-12 animate-float relative">
             <div class="relative w-48 h-auto md:w-64">
                 <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
@@ -110,10 +109,9 @@
             </div>
         </div>
 
-        <!-- Content Swap (Form -> Referral) -->
+        <!-- Interaktion -->
         <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">
-            
-            <!-- VOR der Anmeldung -->
+            <!-- VOR Signup -->
             <template x-if="!joined">
                 <div class="flex flex-col items-center animate-fade-in">
                     <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-base-charcoal mb-4 leading-[0.9]">
@@ -123,26 +121,14 @@
                         Premium Ceremonial Matcha.<br> Discreet Delivery. No Middlemen.<br>
                         <span class="text-sm mt-2 block text-matcha-deep/80 italic">Sign up for the drop.</span>
                     </p>
-
                     <form @submit.prevent="submitForm" class="w-full relative">
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <input 
-                                type="email" 
-                                required 
-                                placeholder="enter@email.com" 
-                                x-model="email"
-                                class="flex-1 h-12 bg-white border border-base-charcoal/10 px-4 rounded-sm text-base-charcoal placeholder:text-base-warmGray/50 focus:outline-none focus:border-matcha-deep focus:ring-1 focus:ring-matcha-deep transition-all font-sans text-sm"
-                            >
-                            <button 
-                                type="submit" 
-                                :disabled="loading"
-                                class="h-12 px-8 bg-matcha-deep text-white font-heading font-bold tracking-widest text-xs uppercase rounded-sm hover:bg-[#234010] transition-all disabled:opacity-70 flex items-center justify-center min-w-[120px]"
-                            >
-                                <span x-show="!loading">Join List</span>
+                            <input type="email" required placeholder="enter@email.com" x-model="email" class="flex-1 h-12 bg-white border border-base-charcoal/10 px-4 rounded-sm text-base-charcoal placeholder:text-base-warmGray/50 focus:outline-none focus:border-matcha-deep focus:ring-1 focus:ring-matcha-deep transition-all font-sans text-sm">
+                            <button type="submit" :disabled="loading" class="h-12 px-8 bg-matcha-deep text-white font-heading font-bold tracking-widest text-xs uppercase rounded-sm hover:bg-[#234010] transition-all disabled:opacity-70 flex items-center justify-center min-w-[120px]">
+                                <span x-show="!loading">JOIN LIST</span>
                                 <i x-show="loading" class="ph-bold ph-spinner animate-spin text-lg"></i>
                             </button>
                         </div>
-                        <!-- Live Counter -->
                         <div class="mt-4 flex items-center justify-center gap-2 text-xs text-base-warmGray/80 font-medium">
                             <span class="w-1.5 h-1.5 bg-matcha-vibrant rounded-full animate-pulse"></span>
                             <span x-text="counter.toLocaleString() + ' people waiting'"></span>
@@ -151,42 +137,24 @@
                 </div>
             </template>
 
-            <!-- NACH der Anmeldung (Referral) -->
+            <!-- NACH Signup -->
             <template x-if="joined">
                 <div class="bg-white p-6 md:p-8 rounded-sm border border-base-charcoal/5 shadow-xl animate-[fadeIn_0.5s_ease-out]">
                     <div class="flex items-center justify-center gap-2 text-matcha-deep mb-2">
                         <i class="ph-fill ph-check-circle text-xl"></i>
                         <span class="font-bold text-xs uppercase tracking-widest">You're on the list</span>
                     </div>
-                    
                     <div class="text-3xl md:text-4xl font-heading font-bold text-base-charcoal mb-6">
                         Position #<span x-text="position.toLocaleString()"></span>
                     </div>
-
                     <div class="bg-base-cream p-4 rounded-sm border border-base-charcoal/5 mb-6 text-left">
                         <p class="text-xs font-bold uppercase tracking-widest text-base-charcoal mb-2">Your Supply Link</p>
                         <p class="text-xs text-base-warmGray mb-3">Share to cut the line & earn rewards.</p>
-                        
                         <div class="flex gap-2">
-                            <div class="flex-1 bg-white border border-gray-200 h-10 flex items-center px-3 text-xs font-mono text-base-warmGray overflow-hidden whitespace-nowrap select-all">
-                                matchasupply.co/r/k9X2p
-                            </div>
-                            <button @click="copyLink" class="h-10 px-4 bg-base-charcoal text-white text-xs font-bold uppercase tracking-widest hover:bg-matcha-deep transition-colors">
-                                <span x-text="copied ? 'Copied' : 'Copy'"></span>
-                            </button>
+                            <div class="flex-1 bg-white border border-gray-200 h-10 flex items-center px-3 text-xs font-mono text-base-warmGray overflow-hidden whitespace-nowrap select-all">matchasupply.co/r/k9X2p</div>
+                            <button @click="copyLink" class="h-10 px-4 bg-base-charcoal text-white text-xs font-bold uppercase tracking-widest hover:bg-matcha-deep transition-colors"><span x-text="copied ? 'Copied' : 'Copy'"></span></button>
                         </div>
                     </div>
-
-                    <div class="space-y-4">
-                        <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-base-warmGray">
-                            <span>0 Referrals</span>
-                            <span class="text-matcha-deep">Next: Early Access (3)</span>
-                        </div>
-                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                            <div class="h-full bg-matcha-deep w-[5%]"></div>
-                        </div>
-                    </div>
-
                     <div class="mt-8 grid grid-cols-3 gap-2">
                         <button class="py-2 bg-[#1DA1F2]/10 text-[#1DA1F2] text-xl rounded-sm hover:bg-[#1DA1F2]/20 transition"><i class="ph-fill ph-twitter-logo"></i></button>
                         <button class="py-2 bg-[#25D366]/10 text-[#25D366] text-xl rounded-sm hover:bg-[#25D366]/20 transition"><i class="ph-fill ph-whatsapp-logo"></i></button>
@@ -197,51 +165,42 @@
         </div>
     </main>
 
-    <!-- Features Section -->
+    <!-- Icons Section (Dient als Farbreferenz für den Footer) -->
     <section class="w-full border-t border-b border-base-charcoal/5 bg-white/50 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-                
                 <div class="flex flex-col items-center group">
-                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
-                        <i class="ph ph-flask text-3xl"></i>
-                    </div>
+                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300"><i class="ph ph-flask text-3xl"></i></div>
                     <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-base-charcoal">Lab Tested</h3>
                     <p class="text-xs text-base-warmGray">Pure potency. Zero fillers.</p>
                 </div>
-
                 <div class="flex flex-col items-center group">
-                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
-                        <i class="ph ph-map-pin-line text-3xl"></i>
-                    </div>
+                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300"><i class="ph ph-map-pin-line text-3xl"></i></div>
                     <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-base-charcoal">Single Origin</h3>
                     <p class="text-xs text-base-warmGray">Sourced from Uji, Japan.</p>
                 </div>
-
                 <div class="flex flex-col items-center group">
-                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
-                        <i class="ph ph-handshake text-3xl"></i>
-                    </div>
+                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300"><i class="ph ph-handshake text-3xl"></i></div>
                     <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-base-charcoal">No Middlemen</h3>
                     <p class="text-xs text-base-warmGray">Direct from source to supply.</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm pt-12 pb-8 px-6 mt-auto">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <!-- FOOTER (JETZT HELL & MIT DISCLAIMER) -->
+    <!-- Die Hintergrundfarbe ist bg-white/50, exakt wie die Section darüber -->
+    <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm py-10 px-6 mt-auto">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             
-            <!-- Social Icons -->
+            <!-- Social Icons (Dunkelgrau für Kontrast auf hellem Grund) -->
             <div class="flex gap-6 text-2xl text-base-charcoal/60">
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-x-logo"></i></a>
             </div>
 
-            <!-- Links -->
+            <!-- Copyright & Links -->
             <div class="text-center md:text-right">
                 <p class="text-xs font-mono text-base-charcoal mb-1">© 2025 Matcha Supply Co.</p>
                 <div class="flex gap-4 text-[10px] text-base-warmGray/80 uppercase tracking-wide justify-center md:justify-end">
@@ -250,56 +209,28 @@
                     <a href="#" class="hover:text-matcha-deep transition-colors">Terms</a>
                 </div>
             </div>
-
         </div>
 
-        <!-- NEUER DISCLAIMER BLOCK -->
-        <div class="mt-10 pt-6 border-t border-base-charcoal/5 text-center">
-            <p class="text-[10px] text-base-warmGray/60 leading-relaxed max-w-3xl mx-auto">
-                <span class="font-bold uppercase text-base-charcoal/80 mr-1">Legal Disclaimer:</span>
-                Matcha Supply Co. retails exclusively 100% premium green tea powder (Camellia sinensis). 
-                References to terms such as "supply", "dose", "stash", and "uncut", along with our clinical packaging, are strictly satirical marketing elements designed to emphasize the purity and potency of the product. 
-                This product is <strong>not</strong> a controlled substance. We do not condone, support, or glorify the use of illegal substances. For culinary use only.
+        <!-- DISCLAIMER BLOCK -->
+        <!-- Dezente Abgrenzung, heller Text, aber gut lesbar -->
+        <div class="max-w-4xl mx-auto pt-6 border-t border-base-charcoal/10 text-center">
+            <p class="text-[10px] leading-relaxed text-base-warmGray/70">
+                <span class="font-bold text-base-charcoal/90 uppercase">Legal Disclaimer:</span>
+                This product is exclusively premium green tea powder (Camellia sinensis). 
+                All visual and textual references to "supply", "stash", or clinical aesthetics are purely for satirical marketing purposes to highlight the purity of the product. 
+                We do not sell controlled substances. This product is safe, legal, and intended solely for culinary consumption.
             </p>
         </div>
-
     </footer>
 
     <!-- LOGIC -->
     <script>
         function waitlistApp() {
             return {
-                joined: false,
-                email: '',
-                loading: false,
-                counter: 2847,
-                position: 2848,
-                copied: false,
-
-                init() {
-                    setInterval(() => {
-                        if(Math.random() > 0.7) {
-                            this.counter++;
-                        }
-                    }, 2000);
-                },
-
-                submitForm() {
-                    if (!this.email) return;
-                    this.loading = true;
-                    
-                    setTimeout(() => {
-                        this.loading = false;
-                        this.joined = true;
-                        this.position = this.counter + 1;
-                    }, 1500);
-                },
-
-                copyLink() {
-                    navigator.clipboard.writeText("matchasupply.co/r/k9X2p");
-                    this.copied = true;
-                    setTimeout(() => this.copied = false, 2000);
-                }
+                joined: false, email: '', loading: false, counter: 2847, position: 2848, copied: false,
+                init() { setInterval(() => { if(Math.random() > 0.7) this.counter++; }, 2000); },
+                submitForm() { if (!this.email) return; this.loading = true; setTimeout(() => { this.loading = false; this.joined = true; this.position = this.counter + 1; }, 1500); },
+                copyLink() { navigator.clipboard.writeText("matchasupply.co/r/k9X2p"); this.copied = true; setTimeout(() => this.copied = false, 2000); }
             }
         }
     </script>

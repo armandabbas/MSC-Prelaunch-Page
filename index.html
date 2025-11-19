@@ -48,7 +48,7 @@
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         },
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -95,50 +95,24 @@
     </header>
 
     <!-- Hero Main Section -->
-    <main class="flex-1 flex flex-col items-center justify-center px-6 pt-4 pb-16 relative z-10 w-full max-w-4xl mx-auto">
+    <main class="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-        <!-- VISUAL: SEALED CARD -->
-        <div class="mb-16 mt-4 animate-float relative">
-            
-            <!-- Container -->
-            <div class="relative w-56 h-64 mx-auto flex flex-col items-center justify-end">
+        <!-- VISUAL: RAW & CLEAN (Schwebende Tube, voll sichtbar) -->
+        <div class="mb-12 animate-float relative">
+            <div class="relative w-48 h-auto md:w-64 flex justify-center">
                 
-                <!-- 1. Das Bild (Tube) -->
-                <!-- translate-y-12 (Mobile) -> md:translate-y-20 (Desktop): Schiebt die Röhre tief nach unten -->
-                <div class="relative z-0 w-32 md:w-40 translate-y-12 md:translate-y-20 transition-all duration-500">
-                     <img src="Pill.png" alt="Confidential Supply" class="w-full h-auto object-contain filter brightness-[0.95]">
-                </div>
+                <!-- Bodenschatten (für den Schwebe-Effekt) -->
+                <div class="absolute -bottom-8 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
+                
+                <!-- Das Bild -->
+                <!-- drop-shadow-xl sorgt für plastische Tiefe -->
+                <img 
+                    src="Pill.png" 
+                    alt="Matcha Supply Tube" 
+                    class="w-full h-auto object-contain drop-shadow-2xl relative z-10"
+                >
 
-                <!-- 2. Die Karte (Vordergrund) -->
-                <!-- h-40 (Mobile) -> md:h-56 (Desktop): Macht die Karte deutlich höher auf Desktop, um das untere Ende zu verdecken -->
-                <div class="absolute bottom-0 z-10 w-64 md:w-72 h-40 md:h-56 bg-white border border-base-charcoal/10 shadow-2xl rounded-sm flex flex-col items-center justify-center text-center transition-all duration-500">
-                    
-                    <!-- Grüner Akzent -->
-                    <div class="absolute top-0 left-0 w-full h-1 bg-matcha-deep"></div>
-
-                    <!-- Tech-Gitter -->
-                    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 8px 8px;"></div>
-                    
-                    <!-- Inhalt -->
-                    <div class="relative z-20 px-6">
-                        <div class="w-9 h-9 mx-auto mb-3 text-base-charcoal/70 bg-base-cream border border-base-charcoal/10 rounded-full flex items-center justify-center">
-                            <i class="ph-bold ph-lock-key text-lg"></i>
-                        </div>
-                        
-                        <h3 class="font-heading text-xl font-bold text-base-charcoal uppercase tracking-widest mb-1">
-                            Classified
-                        </h3>
-                        <p class="font-mono text-[9px] text-base-warmGray uppercase tracking-wide border-t border-base-charcoal/10 pt-3 mt-2">
-                            Prototype Batch #001<br>
-                            Authorized Access Only
-                        </p>
-                    </div>
-                </div>
             </div>
-            
-            <!-- Bodenschatten -->
-            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-56 h-5 bg-black/10 blur-xl rounded-full -z-10"></div>
-            
         </div>
 
         <!-- Content Area -->
@@ -152,7 +126,7 @@
                     </h1>
                     <p class="font-sans text-base-warmGray text-base md:text-lg mb-8 leading-relaxed max-w-xs md:max-w-sm mx-auto">
                         Premium Ceremonial Matcha.<br> Discreet Delivery. No Middlemen.<br>
-                        <span class="text-sm mt-2 block text-matcha-deep/80 italic">Sign up for the reveal.</span>
+                        <span class="text-sm mt-2 block text-matcha-deep/80 italic">Sign up for the drop.</span>
                     </p>
 
                     <form @submit.prevent="submitForm" class="w-full relative">
@@ -256,14 +230,18 @@
         </div>
     </section>
 
-    <!-- Footer with Disclaimer -->
+    <!-- Light Footer with Disclaimer -->
     <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm py-10 px-6 mt-auto">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+            
+            <!-- Icons -->
             <div class="flex gap-6 text-2xl text-base-charcoal/60">
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-x-logo"></i></a>
             </div>
+
+            <!-- Copy -->
             <div class="text-center md:text-right">
                 <p class="text-xs font-mono text-base-charcoal mb-1">© 2025 Matcha Supply Co.</p>
                 <div class="flex gap-4 text-[10px] text-base-warmGray/80 uppercase tracking-wide justify-center md:justify-end">
@@ -273,6 +251,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Disclaimer -->
         <div class="max-w-4xl mx-auto pt-6 border-t border-base-charcoal/10 text-center">
             <p class="text-[10px] leading-relaxed text-base-warmGray/70">
                 <span class="font-bold text-base-charcoal/90 uppercase">Legal Disclaimer:</span>

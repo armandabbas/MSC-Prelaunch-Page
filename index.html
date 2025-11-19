@@ -97,17 +97,46 @@
     <!-- Hero Section -->
     <main class="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-        <!-- BILD -->
-        <div class="mb-12 animate-float relative">
-            <div class="relative w-48 h-auto md:w-64">
-                <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
-                <img 
-                    src="Pill.png" 
-                    alt="Matcha Supply Pill" 
-                    class="w-full h-auto object-contain drop-shadow-xl relative z-10"
-                >
+<!-- MYSTERY VISUAL: FROSTED GLASS EFFECT -->
+<div class="mb-12 animate-float relative group cursor-help">
+    <div class="relative w-48 h-auto md:w-56">
+        
+        <!-- 1. Der Schatten (bleibt unten) -->
+        <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
+        
+        <!-- 2. Container für Bild & Effekte -->
+        <div class="relative rounded-full overflow-hidden">
+            
+            <!-- DEIN ORIGINAL BILD (im Hintergrund) -->
+            <img 
+                src="Pill.png" 
+                alt="Matcha Supply Pill" 
+                class="w-full h-auto object-contain relative z-0 scale-110 transition-transform duration-700 group-hover:scale-100"
+            >
+            
+            <!-- 3. Der MILCHGLAS-EFFEKT (Overlay) -->
+            <!-- Das macht das Bild unscharf, lässt aber das grüne Leuchten durch -->
+            <div class="absolute inset-0 bg-white/10 backdrop-blur-[12px] z-10 transition-all duration-700 group-hover:backdrop-blur-[8px]"></div>
+            
+            <!-- 4. Der STEMPEL / TEXT -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center">
+                <!-- Sticker Container -->
+                <div class="bg-base-charcoal/90 text-base-cream border border-white/20 px-4 py-2 rotate-[-12deg] shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:rotate-0 group-hover:scale-110">
+                    <span class="block font-heading font-bold text-lg tracking-widest uppercase whitespace-nowrap">
+                        CONFIDENTIAL
+                    </span>
+                    <span class="block font-mono text-[8px] tracking-wider text-base-cream/60 border-t border-white/20 pt-1 mt-1">
+                        BATCH #001
+                    </span>
+                </div>
             </div>
+
         </div>
+
+        <!-- 5. Grünes "Halo" Leuchten im Hintergrund (verstärkt die Farbe) -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-matcha-vibrant/40 blur-3xl -z-10 rounded-full"></div>
+    </div>
+</div>
 
         <!-- Interaktion -->
         <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">

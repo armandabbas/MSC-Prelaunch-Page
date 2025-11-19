@@ -9,7 +9,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Alpine.js (Für die Logik) -->
+    <!-- Alpine.js (Logik) -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- Phosphor Icons -->
@@ -65,7 +65,7 @@
             background-color: #F5F3EF;
             color: #1A1A1A;
         }
-        /* Körniger Overlay-Effekt für Textur */
+        /* Textur Overlay */
         .noise {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -95,16 +95,13 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Main Content -->
     <main class="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-        <!-- 1. Bild: Pill.png -->
+        <!-- BILD: Pill.png -->
         <div class="mb-12 animate-float relative">
             <div class="relative w-48 h-auto md:w-64">
-                <!-- Schatten unten (bleibt fix, Bild schwebt darüber) -->
                 <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
-                
-                <!-- DEIN BILD -->
                 <img 
                     src="Pill.png" 
                     alt="Matcha Supply Pill" 
@@ -113,7 +110,7 @@
             </div>
         </div>
 
-        <!-- 2. Interaktiver Bereich: Formular <-> Referral -->
+        <!-- Content Swap (Form -> Referral) -->
         <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">
             
             <!-- VOR der Anmeldung -->
@@ -154,7 +151,7 @@
                 </div>
             </template>
 
-            <!-- NACH der Anmeldung (Referral Screen) -->
+            <!-- NACH der Anmeldung (Referral) -->
             <template x-if="joined">
                 <div class="bg-white p-6 md:p-8 rounded-sm border border-base-charcoal/5 shadow-xl animate-[fadeIn_0.5s_ease-out]">
                     <div class="flex items-center justify-center gap-2 text-matcha-deep mb-2">
@@ -200,7 +197,7 @@
         </div>
     </main>
 
-    <!-- Icons Section -->
+    <!-- Features Section -->
     <section class="w-full border-t border-b border-base-charcoal/5 bg-white/50 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
@@ -233,18 +230,18 @@
         </div>
     </section>
 
-    <!-- LIGHT FOOTER (Gleiche Farbe wie Icons Section) -->
-    <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm py-10 px-6 mt-auto">
+    <!-- FOOTER -->
+    <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm pt-12 pb-8 px-6 mt-auto">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             
-            <!-- Social Icons (Jetzt dunkel) -->
+            <!-- Social Icons -->
             <div class="flex gap-6 text-2xl text-base-charcoal/60">
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-x-logo"></i></a>
             </div>
 
-            <!-- Copyright & Links -->
+            <!-- Links -->
             <div class="text-center md:text-right">
                 <p class="text-xs font-mono text-base-charcoal mb-1">© 2025 Matcha Supply Co.</p>
                 <div class="flex gap-4 text-[10px] text-base-warmGray/80 uppercase tracking-wide justify-center md:justify-end">
@@ -255,9 +252,20 @@
             </div>
 
         </div>
+
+        <!-- NEUER DISCLAIMER BLOCK -->
+        <div class="mt-10 pt-6 border-t border-base-charcoal/5 text-center">
+            <p class="text-[10px] text-base-warmGray/60 leading-relaxed max-w-3xl mx-auto">
+                <span class="font-bold uppercase text-base-charcoal/80 mr-1">Legal Disclaimer:</span>
+                Matcha Supply Co. retails exclusively 100% premium green tea powder (Camellia sinensis). 
+                References to terms such as "supply", "dose", "stash", and "uncut", along with our clinical packaging, are strictly satirical marketing elements designed to emphasize the purity and potency of the product. 
+                This product is <strong>not</strong> a controlled substance. We do not condone, support, or glorify the use of illegal substances. For culinary use only.
+            </p>
+        </div>
+
     </footer>
 
-    <!-- LOGIC (Bleibt unverändert) -->
+    <!-- LOGIC -->
     <script>
         function waitlistApp() {
             return {

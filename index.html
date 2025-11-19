@@ -9,7 +9,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Alpine.js (Logik) -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- Phosphor Icons -->
@@ -48,7 +48,7 @@
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-15px)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         },
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -78,7 +78,7 @@
 
     <div class="noise"></div>
 
-    <!-- Background Gradients -->
+    <!-- Background Atmosphere -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-matcha-light/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-matcha-deep/5 rounded-full blur-3xl"></div>
@@ -94,53 +94,60 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-16 relative z-10 w-full max-w-4xl mx-auto">
+    <!-- Hero Main Section -->
+    <main class="flex-1 flex flex-col items-center justify-center px-6 pt-4 pb-16 relative z-10 w-full max-w-4xl mx-auto">
         
-<!-- MYSTERY VISUAL: FROSTED GLASS EFFECT -->
-<div class="mb-12 animate-float relative group cursor-help">
-    <div class="relative w-48 h-auto md:w-56">
-        
-        <!-- 1. Der Schatten (bleibt unten) -->
-        <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 blur-xl rounded-full"></div>
-        
-        <!-- 2. Container für Bild & Effekte -->
-        <div class="relative rounded-full overflow-hidden">
+        <!-- VISUAL OPTION 2: THE SEALED CARD -->
+        <!-- Diese Konstruktion lässt das Bild physisch verdeckt erscheinen (wie in einem Archiv) -->
+        <div class="mb-16 mt-4 animate-float relative">
             
-            <!-- DEIN ORIGINAL BILD (im Hintergrund) -->
-            <img 
-                src="Pill.png" 
-                alt="Matcha Supply Pill" 
-                class="w-full h-auto object-contain relative z-0 scale-110 transition-transform duration-700 group-hover:scale-100"
-            >
-            
-            <!-- 3. Der MILCHGLAS-EFFEKT (Overlay) -->
-            <!-- Das macht das Bild unscharf, lässt aber das grüne Leuchten durch -->
-            <div class="absolute inset-0 bg-white/10 backdrop-blur-[12px] z-10 transition-all duration-700 group-hover:backdrop-blur-[8px]"></div>
-            
-            <!-- 4. Der STEMPEL / TEXT -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center">
-                <!-- Sticker Container -->
-                <div class="bg-base-charcoal/90 text-base-cream border border-white/20 px-4 py-2 rotate-[-12deg] shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:rotate-0 group-hover:scale-110">
-                    <span class="block font-heading font-bold text-lg tracking-widest uppercase whitespace-nowrap">
-                        CONFIDENTIAL
-                    </span>
-                    <span class="block font-mono text-[8px] tracking-wider text-base-cream/60 border-t border-white/20 pt-1 mt-1">
-                        BATCH #001
-                    </span>
+            <!-- Container für die Komposition -->
+            <div class="relative w-56 h-64 mx-auto flex flex-col items-center justify-end">
+                
+                <!-- 1. Das Bild (Im Hintergrund, Z-Index 0) -->
+                <!-- Wir schieben es etwas hoch (mb-8), damit der Kopf oben rausschaut -->
+                <div class="relative z-0 w-32 md:w-40 mb-8">
+                     <img src="Pill.png" alt="Confidential Supply" class="w-full h-auto object-contain filter brightness-[0.95]">
+                </div>
+
+                <!-- 2. Die "Classified" Karte (Im Vordergrund, Z-Index 10) -->
+                <div class="absolute bottom-0 z-10 w-64 h-40 bg-white border border-base-charcoal/10 shadow-2xl rounded-sm flex flex-col items-center justify-center text-center">
+                    
+                    <!-- Grüner Akzent-Balken oben -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-matcha-deep"></div>
+
+                    <!-- Subtiles Tech-Gitter im Hintergrund -->
+                    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 8px 8px;"></div>
+                    
+                    <!-- Inhalt der Karte -->
+                    <div class="relative z-20 px-6">
+                        <!-- Lock Icon Circle -->
+                        <div class="w-9 h-9 mx-auto mb-3 text-base-charcoal/70 bg-base-cream border border-base-charcoal/10 rounded-full flex items-center justify-center">
+                            <i class="ph-bold ph-lock-key text-lg"></i>
+                        </div>
+                        
+                        <!-- Text -->
+                        <h3 class="font-heading text-xl font-bold text-base-charcoal uppercase tracking-widest mb-1">
+                            Classified
+                        </h3>
+                        <p class="font-mono text-[9px] text-base-warmGray uppercase tracking-wide border-t border-base-charcoal/10 pt-3 mt-2">
+                            Prototype Batch #001<br>
+                            Authorized Access Only
+                        </p>
+                    </div>
                 </div>
             </div>
-
+            
+            <!-- 3. Bodenschatten (Ganz unten, Z-Index -10) -->
+            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-56 h-5 bg-black/10 blur-xl rounded-full -z-10"></div>
+            
         </div>
 
-        <!-- 5. Grünes "Halo" Leuchten im Hintergrund (verstärkt die Farbe) -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-matcha-vibrant/40 blur-3xl -z-10 rounded-full"></div>
-    </div>
-</div>
 
-        <!-- Interaktion -->
+        <!-- Content Area: Form -> Referral -->
         <div class="text-center w-full max-w-md transition-all duration-500" x-ref="mainContent">
-            <!-- VOR Signup -->
+            
+            <!-- VOR der Anmeldung -->
             <template x-if="!joined">
                 <div class="flex flex-col items-center animate-fade-in">
                     <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-base-charcoal mb-4 leading-[0.9]">
@@ -148,16 +155,28 @@
                     </h1>
                     <p class="font-sans text-base-warmGray text-base md:text-lg mb-8 leading-relaxed max-w-xs md:max-w-sm mx-auto">
                         Premium Ceremonial Matcha.<br> Discreet Delivery. No Middlemen.<br>
-                        <span class="text-sm mt-2 block text-matcha-deep/80 italic">Sign up for the drop.</span>
+                        <span class="text-sm mt-2 block text-matcha-deep/80 italic">Sign up for the reveal.</span>
                     </p>
+
                     <form @submit.prevent="submitForm" class="w-full relative">
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <input type="email" required placeholder="enter@email.com" x-model="email" class="flex-1 h-12 bg-white border border-base-charcoal/10 px-4 rounded-sm text-base-charcoal placeholder:text-base-warmGray/50 focus:outline-none focus:border-matcha-deep focus:ring-1 focus:ring-matcha-deep transition-all font-sans text-sm">
-                            <button type="submit" :disabled="loading" class="h-12 px-8 bg-matcha-deep text-white font-heading font-bold tracking-widest text-xs uppercase rounded-sm hover:bg-[#234010] transition-all disabled:opacity-70 flex items-center justify-center min-w-[120px]">
+                            <input 
+                                type="email" 
+                                required 
+                                placeholder="enter@email.com" 
+                                x-model="email"
+                                class="flex-1 h-12 bg-white border border-base-charcoal/10 px-4 rounded-sm text-base-charcoal placeholder:text-base-warmGray/50 focus:outline-none focus:border-matcha-deep focus:ring-1 focus:ring-matcha-deep transition-all font-sans text-sm"
+                            >
+                            <button 
+                                type="submit" 
+                                :disabled="loading"
+                                class="h-12 px-8 bg-matcha-deep text-white font-heading font-bold tracking-widest text-xs uppercase rounded-sm hover:bg-[#234010] transition-all disabled:opacity-70 flex items-center justify-center min-w-[120px]"
+                            >
                                 <span x-show="!loading">JOIN LIST</span>
                                 <i x-show="loading" class="ph-bold ph-spinner animate-spin text-lg"></i>
                             </button>
                         </div>
+                        <!-- Counter -->
                         <div class="mt-4 flex items-center justify-center gap-2 text-xs text-base-warmGray/80 font-medium">
                             <span class="w-1.5 h-1.5 bg-matcha-vibrant rounded-full animate-pulse"></span>
                             <span x-text="counter.toLocaleString() + ' people waiting'"></span>
@@ -166,24 +185,42 @@
                 </div>
             </template>
 
-            <!-- NACH Signup -->
+            <!-- NACH der Anmeldung -->
             <template x-if="joined">
                 <div class="bg-white p-6 md:p-8 rounded-sm border border-base-charcoal/5 shadow-xl animate-[fadeIn_0.5s_ease-out]">
                     <div class="flex items-center justify-center gap-2 text-matcha-deep mb-2">
                         <i class="ph-fill ph-check-circle text-xl"></i>
                         <span class="font-bold text-xs uppercase tracking-widest">You're on the list</span>
                     </div>
+                    
                     <div class="text-3xl md:text-4xl font-heading font-bold text-base-charcoal mb-6">
                         Position #<span x-text="position.toLocaleString()"></span>
                     </div>
+
                     <div class="bg-base-cream p-4 rounded-sm border border-base-charcoal/5 mb-6 text-left">
                         <p class="text-xs font-bold uppercase tracking-widest text-base-charcoal mb-2">Your Supply Link</p>
                         <p class="text-xs text-base-warmGray mb-3">Share to cut the line & earn rewards.</p>
+                        
                         <div class="flex gap-2">
-                            <div class="flex-1 bg-white border border-gray-200 h-10 flex items-center px-3 text-xs font-mono text-base-warmGray overflow-hidden whitespace-nowrap select-all">matchasupply.co/r/k9X2p</div>
-                            <button @click="copyLink" class="h-10 px-4 bg-base-charcoal text-white text-xs font-bold uppercase tracking-widest hover:bg-matcha-deep transition-colors"><span x-text="copied ? 'Copied' : 'Copy'"></span></button>
+                            <div class="flex-1 bg-white border border-gray-200 h-10 flex items-center px-3 text-xs font-mono text-base-warmGray overflow-hidden whitespace-nowrap select-all">
+                                matchasupply.co/r/k9X2p
+                            </div>
+                            <button @click="copyLink" class="h-10 px-4 bg-base-charcoal text-white text-xs font-bold uppercase tracking-widest hover:bg-matcha-deep transition-colors">
+                                <span x-text="copied ? 'Copied' : 'Copy'"></span>
+                            </button>
                         </div>
                     </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-base-warmGray">
+                            <span>0 Referrals</span>
+                            <span class="text-matcha-deep">Next: Early Access (3)</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-matcha-deep w-[5%]"></div>
+                        </div>
+                    </div>
+
                     <div class="mt-8 grid grid-cols-3 gap-2">
                         <button class="py-2 bg-[#1DA1F2]/10 text-[#1DA1F2] text-xl rounded-sm hover:bg-[#1DA1F2]/20 transition"><i class="ph-fill ph-twitter-logo"></i></button>
                         <button class="py-2 bg-[#25D366]/10 text-[#25D366] text-xl rounded-sm hover:bg-[#25D366]/20 transition"><i class="ph-fill ph-whatsapp-logo"></i></button>
@@ -194,22 +231,28 @@
         </div>
     </main>
 
-    <!-- Icons Section (Dient als Farbreferenz für den Footer) -->
+    <!-- Icons Bar -->
     <section class="w-full border-t border-b border-base-charcoal/5 bg-white/50 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
                 <div class="flex flex-col items-center group">
-                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300"><i class="ph ph-flask text-3xl"></i></div>
+                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
+                        <i class="ph ph-flask text-3xl"></i>
+                    </div>
                     <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-base-charcoal">Lab Tested</h3>
                     <p class="text-xs text-base-warmGray">Pure potency. Zero fillers.</p>
                 </div>
                 <div class="flex flex-col items-center group">
-                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300"><i class="ph ph-map-pin-line text-3xl"></i></div>
+                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
+                        <i class="ph ph-map-pin-line text-3xl"></i>
+                    </div>
                     <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-base-charcoal">Single Origin</h3>
                     <p class="text-xs text-base-warmGray">Sourced from Uji, Japan.</p>
                 </div>
                 <div class="flex flex-col items-center group">
-                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300"><i class="ph ph-handshake text-3xl"></i></div>
+                    <div class="mb-4 text-matcha-deep transition-transform group-hover:scale-110 duration-300">
+                        <i class="ph ph-handshake text-3xl"></i>
+                    </div>
                     <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-base-charcoal">No Middlemen</h3>
                     <p class="text-xs text-base-warmGray">Direct from source to supply.</p>
                 </div>
@@ -217,19 +260,18 @@
         </div>
     </section>
 
-    <!-- FOOTER (JETZT HELL & MIT DISCLAIMER) -->
-    <!-- Die Hintergrundfarbe ist bg-white/50, exakt wie die Section darüber -->
+    <!-- Light Footer + Disclaimer -->
     <footer class="w-full border-t border-base-charcoal/5 bg-white/50 backdrop-blur-sm py-10 px-6 mt-auto">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             
-            <!-- Social Icons (Dunkelgrau für Kontrast auf hellem Grund) -->
+            <!-- Icons -->
             <div class="flex gap-6 text-2xl text-base-charcoal/60">
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-tiktok-logo"></i></a>
                 <a href="#" class="hover:text-matcha-deep transition-colors"><i class="ph-fill ph-x-logo"></i></a>
             </div>
 
-            <!-- Copyright & Links -->
+            <!-- Copy -->
             <div class="text-center md:text-right">
                 <p class="text-xs font-mono text-base-charcoal mb-1">© 2025 Matcha Supply Co.</p>
                 <div class="flex gap-4 text-[10px] text-base-warmGray/80 uppercase tracking-wide justify-center md:justify-end">
@@ -240,8 +282,7 @@
             </div>
         </div>
 
-        <!-- DISCLAIMER BLOCK -->
-        <!-- Dezente Abgrenzung, heller Text, aber gut lesbar -->
+        <!-- Disclaimer Block -->
         <div class="max-w-4xl mx-auto pt-6 border-t border-base-charcoal/10 text-center">
             <p class="text-[10px] leading-relaxed text-base-warmGray/70">
                 <span class="font-bold text-base-charcoal/90 uppercase">Legal Disclaimer:</span>
@@ -252,7 +293,7 @@
         </div>
     </footer>
 
-    <!-- LOGIC -->
+    <!-- Logic Script -->
     <script>
         function waitlistApp() {
             return {
